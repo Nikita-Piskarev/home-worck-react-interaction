@@ -2,12 +2,14 @@ import React, { Component } from "react";
 
 class DisplayUser extends Component {
   render() {
-    const { user } = this.props;
+    const {
+      user: { firstName, lastName, likes },
+    } = this.props;
     return (
       <>
-        <p>Firs name : {user.firstName}</p>
-        <p>Last name : {user.lastName}</p>
-        <p>Likes : {user.likes} </p>
+        <p>Firs name : {firstName}</p>
+        <p>Last name : {lastName}</p>
+        <p>Likes : {likes} </p>
       </>
     );
   }
