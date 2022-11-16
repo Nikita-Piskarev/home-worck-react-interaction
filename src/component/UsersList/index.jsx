@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ButtonLikeUser from "./ButtonLikeUser";
 import ButtonSortUsers from "./ButtonSortUsers";
-import ButoonKillUser from "./ButtonKillUser";
+import ButoonDeleteUser from "./ButtonDeleteUser";
 import DisplayUser from "./DisplayUser";
 
 class UsersList extends Component {
@@ -55,10 +55,11 @@ class UsersList extends Component {
       const newUser = {
         ...user,
         likes: userId === user.id ? user.likes + 1 : user.likes,
-        isChosen: userId === user.id ? this.isChosen : !this.isChosen,
+        isChosen: userId === user.id ? !user.isChosen : user.isChosen,
       };
       return newUser;
     });
+
     this.setState({ users: newUsers });
   };
 
@@ -72,12 +73,12 @@ class UsersList extends Component {
     const userLis = users.map((user) => (
       <li key={`${user.id}`}>
         <DisplayUser user={user} />
-        <ButtonLikeUser likeUser={this.likeUser} id={user.id} />
-        <ButoonKillUser
-          deleteUser={this.deleteUser}
+        <ButtonLikeUser
+          likeUser={this.likeUser}
           id={user.id}
           isChosen={user.isChosen}
         />
+        <ButoonDeleteUser deleteUser={this.deleteUser} id={user.id} />
       </li>
     ));
 
